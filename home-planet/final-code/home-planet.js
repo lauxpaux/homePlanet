@@ -1,16 +1,49 @@
 
 const storyTimeline = gsap.timeline()
 
-storyTimeline
-    .set("section.house", {opacity: 0})
-    .set("header", {opacity: 0})
-    .to("header", {opacity: 1})
+
+    gsap.set("section.house", {opacity: 0})
+    
+    gsap.set("section.scene", {opacity: 0})
+    gsap.set("section.scene img", {
+            x :  (index) => {
+                return (index * 50 + 300) + "vh"
+            }
+        
+    })
+
+storyTimeline   
     .to("header", {opacity: 0, delay: 3})
-    .to("section.house", {opacity: 1})
+    .addLabel("startScene")
+    .to("section.scene", {opacity: 1}, "startScene")
+    .to("section.scene img", { x: "0vh", duration: 10, ease: "linear"}, "startScene" )
+    .addLabel("endScene")
+    .to("section.scene", {opacity: 0}, "endScene")
+    .to("section.house", {opacity: 1}, "endScene")
+    // .to("section.intro", { opacity: 1, duration: 1, delay: 1 })
 
 
 
 
+storyTimeline.pause()
+
+
+let update
+
+
+window.addEventListener("scroll", function() {
+    const pixels = window.pageYOffset
+    const currentTime = pixels / 300
+
+
+    cancelAnimationFrame(update)
+
+
+
+    update = requestAnimationFrame(function () {
+        storyTimeline.seek(currentTime)
+    })
+})
 
 
 

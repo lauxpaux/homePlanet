@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@600&display=swap');
 
+
+@keyframes fadein {
+  0% { opacity: 0;}
+  100% { opacity: 1;}
+}
+
 body {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 16px;
@@ -7,6 +13,12 @@ body {
 
   background-color: #140e3c;
   color: #ffffff;
+
+  height: 8000px;
+}
+
+main {
+  animation: fadein 1s 1s both;
 }
 
 header, section {
@@ -24,6 +36,7 @@ header {
   justify-content: center;
 
 
+  padding: 32px;
   min-height: 100vh;
 }
 
@@ -34,7 +47,23 @@ header svg {
 h1 {
   font-size: 32px;
   margin: 32px 0 0 0; 
+  text-align: center;
 }
+
+section.scene {
+
+}
+
+section.scene img {
+  position: fixed;
+  top: 0; 
+  right: 0;
+  height: 100vh;
+  width: 700vh;
+  max-width: none;
+
+}
+
 
 section.house {
   display: flex;
@@ -43,11 +72,18 @@ section.house {
   justify-content: center;
 
   min-height: 100vh;
+  padding: 32px;
+}
+
+section.house svg {
+  max-width: 100%;
 }
 
 section.house svg g#sccene {
   opacity: 1;
   transition: opacity 0.25s;
+
+
 }
 
 section.house svg:hover g#scene{
@@ -73,3 +109,4 @@ div.label {
 div.label.is-visible {
   opacity: 1;
 }
+
